@@ -5,8 +5,8 @@ import { contractAbi } from "../assets/contractABI";
 const contractAddress = process.env.REACT_APP_CONTRACT_ADDRESS;
 
 // const web3 = new Web3(RPC_URL);
-
-export default function Counter({ web3 }) {
+ 
+export default function Counter({ web3, getUserBalance }) {
   //react state to store the counter value
   const [counter, setCounter] = useState("");
 
@@ -42,6 +42,8 @@ export default function Counter({ web3 }) {
           console.log("Transaction Receipt:", receipt);
           //To update the value of counter
           getCounter();
+          //To update the user balance after a transaction was made 
+          getUserBalance(web3, accounts[0]);
         })
         .on("error", (error) => console.error("Error:", error));
     } catch (err) {
@@ -68,6 +70,8 @@ export default function Counter({ web3 }) {
           console.log("Transaction Receipt:", receipt);
           //To update the value of counter
           getCounter();
+          //To update the user balance after a transaction was made
+          getUserBalance(web3, accounts[0]);
         })
         .on("error", (error) => console.error("Error:", error));
     } catch (err) {
@@ -80,11 +84,11 @@ export default function Counter({ web3 }) {
   });
 
   return (
-    <>
+    <div className="main-div">
       <h2>Interacting With Counter Contract</h2>
-      <button onClick={() => increment()}>Increment</button>
-      <button onClick={() => decrement()}>Decrement</button>
+      <button className="left" onClick={() => increment()}>Increment</button>
+      <button className="right" onClick={() => decrement()}>Decrement</button>
       <p>Counter: {counter}</p>
-    </>
+    </div>
   );
 }

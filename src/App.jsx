@@ -6,6 +6,7 @@ import Counter from "./components";
 function App() {
   //react state to store and show the connected account
   const [connectedAccount, setConnectedAccount] = useState(null);
+  const [balance, setBalance] = useState(null);
   const [web3, setWeb3] = useState(null);
 
   async function connectMetamask() {
@@ -17,19 +18,28 @@ function App() {
         setWeb3(web3_temp);
 
         //request user to connect accounts (Metamask will prompt)
-        await window.ethereum.request({ method: "eth_requestAccounts" })
+        await window.ethereum.request({ method: "eth_requestAccounts" });
 
         //get the connected accounts
         const accounts = await web3.eth.getAccounts();
 
         //show the first connected account in the react page
         setConnectedAccount(accounts[0]);
+        getUserBalance(web3_temp, accounts[0]);
       } else {
         alert("Please download metamask");
       }
     } catch (err) {
-      alert(err.message);
+      console.log("err ", err.message);
     }
+  }
+
+  async function getUserBalance(web3, account) {
+    //get balance of the user
+    const balance_temp = await web3.eth.getBalance(account);
+    console.log("bala ", balance_temp);
+    //store balance of user
+    setBalance(web3.utils.fromWei(balance_temp.toString(), "ether"));
   }
 
   async function disconnectMetamask() {
@@ -48,7 +58,6 @@ function App() {
     }
   }
 
-
   window.ethereum.on("accountsChanged", (accounts) => {
     // If user has locked/logout from MetaMask, this resets the accounts array to empty
     if (!accounts.length) {
@@ -61,19 +70,25 @@ function App() {
     <div className="App">
       {connectedAccount == null ? (
         /* Button to trigger Metamask connection */
-        <button onClick={() => connectMetamask()}>Connect to Metamask</button>
+        <button className="top" onClick={() => connectMetamask()}>Connect to Metamask</button>
       ) : (
         <>
-          <button onClick={() => disconnectMetamask()}>
+          <button className="top" onClick={() => disconnectMetamask()}>
             Disconnect From Metamask
           </button>
-          {/* Display the connected account and counter section*/}
-          <h3>Connected Account:</h3>
-          <p>{connectedAccount}</p>
+          {/* Display the connected account details and counter section*/}
+          <div className="container">
+          <div className="main-div">
+            <h2>Account Details</h2>
+            <p>Connected Account: {connectedAccount}</p>
+            <p>Balance : {balance}</p>
+          </div>
           {/* Passing web3 as props to other components, so they can access the metamask account*/}
-          <Counter web3={web3} />
+          <Counter web3={web3} getUserBalance={getUserBalance} />
+          </div>
         </>
       )}
+      <p>NOTE: Supports only Sepolia Network</p>
     </div>
   );
 }
