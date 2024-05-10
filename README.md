@@ -15,7 +15,7 @@
 `npx hardhat verify`
 
 ## Deployment
-`npx hardhat ignition deploy ./ignition/modules/Counter.js`
+`npx hardhat ignition deploy ./ignition/modules/Counter.js --network <network-name>`
 
 ## Verification
 `npx hardhat verify --network <network-name> <contract-address>`
