@@ -1,4 +1,4 @@
-export const contractAbi = [
+const eventABI = [
   { inputs: [], stateMutability: "nonpayable", type: "constructor" },
   {
     anonymous: false,
@@ -62,3 +62,5 @@ export const contractAbi = [
     type: "function",
   },
 ];
+
+module.exports=eventABI;
