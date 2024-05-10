@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/solidity-tutorial/static/css/main.054388ae.css",
-    "main.js": "/solidity-tutorial/static/js/main.0bdf92f3.js",
+    "main.css": "/solidity-tutorial/static/css/main.bedea502.css",
+    "main.js": "/solidity-tutorial/static/js/main.e12b7f6c.js",
     "static/js/453.0f10a1a4.chunk.js": "/solidity-tutorial/static/js/453.0f10a1a4.chunk.js",
     "index.html": "/solidity-tutorial/index.html",
-    "main.054388ae.css.map": "/solidity-tutorial/static/css/main.054388ae.css.map",
-    "main.0bdf92f3.js.map": "/solidity-tutorial/static/js/main.0bdf92f3.js.map",
+    "main.bedea502.css.map": "/solidity-tutorial/static/css/main.bedea502.css.map",
+    "main.e12b7f6c.js.map": "/solidity-tutorial/static/js/main.e12b7f6c.js.map",
     "453.0f10a1a4.chunk.js.map": "/solidity-tutorial/static/js/453.0f10a1a4.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.054388ae.css",
-    "static/js/main.0bdf92f3.js"
+    "static/css/main.bedea502.css",
+    "static/js/main.e12b7f6c.js"
   ]
 }
