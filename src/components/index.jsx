@@ -88,7 +88,7 @@ export default function Counter({ web3, getUserBalance }) {
       <h2>Interacting With Counter Contract</h2>
       <button className="left" onClick={() => increment()}>Increment</button>
       <button className="right" onClick={() => decrement()}>Decrement</button>
-      <p>Counter: {counter}</p>
+      <p className="counter-font">Counter: {counter}</p>
     </div>
   );
 }
